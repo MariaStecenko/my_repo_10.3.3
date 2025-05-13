@@ -1,0 +1,26 @@
+# Декоратор, що виводить ім'я функції/методу перед її виконанням
+def log_function_name(func):
+    def wrapper(*args, **kwargs):
+        print(f"Викликається функція: {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+
+# Приклад використання декоратора з функцією
+@log_function_name
+def say_hello(name):
+    print(f"Привіт, {name}!")
+
+
+# Приклад використання декоратора з методом класу
+class MyClass:
+    @log_function_name
+    def greet(self):
+        print("Це метод класу MyClass")
+
+
+# Тестування
+say_hello("Андрій")
+
+obj = MyClass()
+obj.greet()
